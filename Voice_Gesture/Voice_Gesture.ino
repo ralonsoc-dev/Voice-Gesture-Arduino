@@ -48,18 +48,21 @@ public:
 
 void setup() {
   Serial.begin(9600);
+
+  // Configuramos los pines como entrada
   pinMode(menique, INPUT);
   pinMode(anular, INPUT);
   pinMode(corazon, INPUT);
   pinMode(indice, INPUT);
   pinMode(pulgar, INPUT);
   Wire.begin();
+   
   // Inicializar el MPU6050
   mpu.initialize();
 
-  // Iniciar BLE
-  BLEDevice::init("Tu Gesto es mi Voz"); // Call init() without checking for a return value
-  Serial.println("BLE initialized successfully"); // Assume success if init() executes without errors
+  // Iniciar Bluetooth
+  BLEDevice::init("Tu Gesto es mi Voz"); 
+  Serial.println("Bluetooth inicializado correctamente");
 
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
